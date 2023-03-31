@@ -1,0 +1,413 @@
+|lab01
+input0[0] => inversor_controlado4:inversorControlado.input[0]
+input0[0] => hex_to_seven:displayInput0.input[0]
+input0[1] => inversor_controlado4:inversorControlado.input[1]
+input0[1] => hex_to_seven:displayInput0.input[1]
+input0[2] => inversor_controlado4:inversorControlado.input[2]
+input0[2] => hex_to_seven:displayInput0.input[2]
+input0[3] => inversor_controlado4:inversorControlado.input[3]
+input0[3] => hex_to_seven:displayInput0.input[3]
+input1[0] => somador_4bits:somador.input1[0]
+input1[0] => hex_to_seven:displayInput1.input[0]
+input1[1] => somador_4bits:somador.input1[1]
+input1[1] => hex_to_seven:displayInput1.input[1]
+input1[2] => somador_4bits:somador.input1[2]
+input1[2] => hex_to_seven:displayInput1.input[2]
+input1[3] => somador_4bits:somador.input1[3]
+input1[3] => hex_to_seven:displayInput1.input[3]
+enable_sub => inversor_controlado4:inversorControlado.enable
+enable_sub => somador_4bits:somador.carry_in
+input0_output[0] << hex_to_seven:displayInput0.output[0]
+input0_output[1] << hex_to_seven:displayInput0.output[1]
+input0_output[2] << hex_to_seven:displayInput0.output[2]
+input0_output[3] << hex_to_seven:displayInput0.output[3]
+input0_output[4] << hex_to_seven:displayInput0.output[4]
+input0_output[5] << hex_to_seven:displayInput0.output[5]
+input0_output[6] << hex_to_seven:displayInput0.output[6]
+input1_output[0] << hex_to_seven:displayInput1.output[0]
+input1_output[1] << hex_to_seven:displayInput1.output[1]
+input1_output[2] << hex_to_seven:displayInput1.output[2]
+input1_output[3] << hex_to_seven:displayInput1.output[3]
+input1_output[4] << hex_to_seven:displayInput1.output[4]
+input1_output[5] << hex_to_seven:displayInput1.output[5]
+input1_output[6] << hex_to_seven:displayInput1.output[6]
+output0[0] << hex_to_seven:displayOutput0.output[0]
+output0[1] << hex_to_seven:displayOutput0.output[1]
+output0[2] << hex_to_seven:displayOutput0.output[2]
+output0[3] << hex_to_seven:displayOutput0.output[3]
+output0[4] << hex_to_seven:displayOutput0.output[4]
+output0[5] << hex_to_seven:displayOutput0.output[5]
+output0[6] << hex_to_seven:displayOutput0.output[6]
+output1[0] << hex_to_seven:displayOutput1.output[0]
+output1[1] << hex_to_seven:displayOutput1.output[1]
+output1[2] << hex_to_seven:displayOutput1.output[2]
+output1[3] << hex_to_seven:displayOutput1.output[3]
+output1[4] << hex_to_seven:displayOutput1.output[4]
+output1[5] << hex_to_seven:displayOutput1.output[5]
+output1[6] << hex_to_seven:displayOutput1.output[6]
+
+
+|lab01|inversor_controlado4:inversorControlado
+enable => inversor_controlado:inversor_controlado0.enable
+enable => inversor_controlado:inversor_controlado1.enable
+enable => inversor_controlado:inversor_controlado2.enable
+enable => inversor_controlado:inversor_controlado3.enable
+input[0] => inversor_controlado:inversor_controlado0.input
+input[1] => inversor_controlado:inversor_controlado1.input
+input[2] => inversor_controlado:inversor_controlado2.input
+input[3] => inversor_controlado:inversor_controlado3.input
+output[0] <= inversor_controlado:inversor_controlado0.output
+output[1] <= inversor_controlado:inversor_controlado1.output
+output[2] <= inversor_controlado:inversor_controlado2.output
+output[3] <= inversor_controlado:inversor_controlado3.output
+
+
+|lab01|inversor_controlado4:inversorControlado|inversor_controlado:inversor_controlado0
+input => output.IN0
+enable => output.IN1
+output <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|inversor_controlado4:inversorControlado|inversor_controlado:inversor_controlado1
+input => output.IN0
+enable => output.IN1
+output <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|inversor_controlado4:inversorControlado|inversor_controlado:inversor_controlado2
+input => output.IN0
+enable => output.IN1
+output <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|inversor_controlado4:inversorControlado|inversor_controlado:inversor_controlado3
+input => output.IN0
+enable => output.IN1
+output <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|somador_4bits:somador
+input0[0] => somador_1bit:s0.input0
+input0[1] => somador_1bit:s1.input0
+input0[2] => somador_1bit:s2.input0
+input0[3] => somador_1bit:s3.input0
+carry_in => somador_1bit:s0.carry_in
+input1[0] => somador_1bit:s0.input1
+input1[1] => somador_1bit:s1.input1
+input1[2] => somador_1bit:s2.input1
+input1[3] => somador_1bit:s3.input1
+output[0] <= somador_1bit:s0.output
+output[1] <= somador_1bit:s1.output
+output[2] <= somador_1bit:s2.output
+output[3] <= somador_1bit:s3.output
+carry_out <= somador_1bit:s3.carry_out
+
+
+|lab01|somador_4bits:somador|somador_1bit:s0
+carry_in => c_o.IN0
+carry_in => c_o.IN0
+carry_in => s.IN0
+carry_in => s.IN0
+input0 => c_o.IN1
+input0 => c_o.IN0
+input0 => s.IN1
+input0 => s.IN1
+input1 => c_o.IN1
+input1 => c_o.IN1
+input1 => s.IN1
+input1 => s.IN1
+output <= s.DB_MAX_OUTPUT_PORT_TYPE
+carry_out <= c_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|somador_4bits:somador|somador_1bit:s1
+carry_in => c_o.IN0
+carry_in => c_o.IN0
+carry_in => s.IN0
+carry_in => s.IN0
+input0 => c_o.IN1
+input0 => c_o.IN0
+input0 => s.IN1
+input0 => s.IN1
+input1 => c_o.IN1
+input1 => c_o.IN1
+input1 => s.IN1
+input1 => s.IN1
+output <= s.DB_MAX_OUTPUT_PORT_TYPE
+carry_out <= c_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|somador_4bits:somador|somador_1bit:s2
+carry_in => c_o.IN0
+carry_in => c_o.IN0
+carry_in => s.IN0
+carry_in => s.IN0
+input0 => c_o.IN1
+input0 => c_o.IN0
+input0 => s.IN1
+input0 => s.IN1
+input1 => c_o.IN1
+input1 => c_o.IN1
+input1 => s.IN1
+input1 => s.IN1
+output <= s.DB_MAX_OUTPUT_PORT_TYPE
+carry_out <= c_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|somador_4bits:somador|somador_1bit:s3
+carry_in => c_o.IN0
+carry_in => c_o.IN0
+carry_in => s.IN0
+carry_in => s.IN0
+input0 => c_o.IN1
+input0 => c_o.IN0
+input0 => s.IN1
+input0 => s.IN1
+input1 => c_o.IN1
+input1 => c_o.IN1
+input1 => s.IN1
+input1 => s.IN1
+output <= s.DB_MAX_OUTPUT_PORT_TYPE
+carry_out <= c_o.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|out1_to_hex_wire:pontMSB
+input => output[0].DATAIN
+output[0] <= input.DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= <GND>
+output[2] <= <GND>
+output[3] <= <GND>
+
+
+|lab01|hex_to_seven:displayInput0
+input[0] => output.IN0
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN0
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+output[0] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[2] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[3] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[4] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[5] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[6] <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|hex_to_seven:displayInput1
+input[0] => output.IN0
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN0
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+output[0] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[2] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[3] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[4] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[5] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[6] <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|hex_to_seven:displayOutput0
+input[0] => output.IN0
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN0
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+output[0] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[2] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[3] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[4] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[5] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[6] <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|lab01|hex_to_seven:displayOutput1
+input[0] => output.IN0
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN0
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[0] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN1
+input[1] => output.IN0
+input[1] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN1
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN0
+input[2] => output.IN1
+input[2] => output.IN0
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+input[3] => output.IN1
+output[0] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[1] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[2] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[3] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[4] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[5] <= output.DB_MAX_OUTPUT_PORT_TYPE
+output[6] <= output.DB_MAX_OUTPUT_PORT_TYPE
+
+

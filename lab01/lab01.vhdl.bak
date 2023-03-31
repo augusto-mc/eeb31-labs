@@ -1,0 +1,104 @@
+library ieee;
+use ieee.std_logic_1164.all;
+
+entity lab01 is
+	port(
+		input0: in std_logic_vector(3 downto 0);
+		input1: in std_logic_vector(3 downto 0);
+		enable_sub: in std_logic;
+		input0_output: out std_logic_vector(6 downto 0);
+		input1_output: out std_logic_vector(6 downto 0);
+		output0: out std_logic_vector(6 downto 0);
+		output1: out std_logic_vector(6 downto 0)
+	);
+end entity;
+
+architecture arch of lab01 is
+	signal inversorControlado_input: std_logic_vector(3 downto 0);
+	signal inversorControlado_enable: std_logic;
+	signal inversorControlado_output: std_logic_vector(3 downto 0);
+
+	signal somador_input0: std_logic_vector(3 downto 0);
+	signal somador_input1: std_logic_vector(3 downto 0);
+
+	signal somador_carry_in: std_logic;
+	signal somador_output: std_logic_vector(3 downto 0);
+	signal somador_carry_out: std_logic;
+	
+	signal ponteMSB_input: std_logic;
+	signal ponteMSB_output: std_logic_vector(3 downto 0);
+
+	signal displayInput0_input: std_logic_vector(3 downto 0);
+	signal displayInput0_output: std_logic_vector(6 downto 0);
+
+	signal displayInput1_input: std_logic_vector(3 downto 0);
+	signal displayInput1_output: std_logic_vector(6 downto 0);
+
+	signal displayOutput0_input: std_logic_vector(3 downto 0);
+	signal displayOutput0_output: std_logic_vector(6 downto 0);
+
+	signal displayOutput1_input: std_logic_vector(3 downto 0);
+	signal displayOutput1_output: std_logic_vector(6 downto 0);
+
+begin
+	inversorControlado_input <= input0;
+	inversorControlado_enable <= enable_sub;
+
+	somador_input0 <= inversorControlado_output;
+	somador_input1 <= input1;
+	somador_carry_in <= enable_sub;
+
+	ponteMSB_input <= somador_carry_out;
+
+	displayInput0_input <= input0;
+	input0_output <= displayInput0_output;
+
+	displayInput1_input <= input1;
+	input1_output <= displayInput1_output;
+
+	displayOutput0_input <= somador_output;
+	output0 <= displayOutput0_output;
+
+	displayOutput1_input <= ponteMSB_output;
+	output1 <= displayOutput1_output;
+
+	inversorControlado: inversor_controlado4 port map(
+		input => inversorControlado_input,
+		enable => inversorControlado_enable,
+		output => inversorControlado_output
+	);
+
+	somador: somador_4bits port map(
+		input0 => somador_input0,
+		input1 => somador_input1,
+		carry_in => somador_carry_in,
+		output0 => somador_output,
+		carry_out => somador_carry_out
+	);
+
+	pontMSB: out1_to_hex_wire port map(
+		input: ponteMSB_input,
+		output: ponteMSB_output 
+	);
+
+	displayInput0: hex_to_seven port map(
+		input => displayInput0_input,
+		output => displayInput0_output
+	);
+
+	displayInput1: hex_to_seven port map(
+		input => displayInput1_input,
+		output => displayInput1_output
+	);
+
+	displayOutput0: hex_to_seven port map(
+		input => displayOutput0_input,
+		output => displayOutput0_output
+	);
+
+	displayOutput1: hex_to_seven port map(
+		input => displayOutput1_input,
+		output => displayOutput1_output
+	);
+
+end architecture;
